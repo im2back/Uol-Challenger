@@ -1,6 +1,4 @@
-package com.im2back.github.playermicroservice.model.player.dto;
-
-import com.im2back.github.playermicroservice.model.group.Group;
+package com.im2back.github.registrationmicroservice.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -10,15 +8,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 public class PlayerRegistrationRequestDto{
-	
 	private String name;
+
 	private String email;
+
 	private String phone;
-	private String alias;
-	private Group group;
 	
+	private String alias;
+
+	private String group;
+
 }

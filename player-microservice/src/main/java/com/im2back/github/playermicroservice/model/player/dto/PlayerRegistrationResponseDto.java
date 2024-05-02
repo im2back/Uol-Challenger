@@ -13,8 +13,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class PlayerRegistrationRequestDto{
+public class PlayerRegistrationResponseDto{
 	
+	private Long id;
 	private String name;
 	private String email;
 	private String phone;

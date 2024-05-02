@@ -13,12 +13,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class PlayerRegistrationRequestDto{
+public class PlayerUpdateResponseDto {
+	
+	private Long id;
 	
 	private String name;
+
 	private String email;
+
 	private String phone;
+
 	private String alias;
+
 	private Group group;
-	
+
 }
