@@ -42,7 +42,7 @@ public class PlayerController {
 	}
 	
 	@PostMapping(value="/register")
-	public ResponseEntity<PlayerRegistrationResponseDto> regsiterPlayer(@RequestBody PlayerRegistrationRequestDto dtoRequest
+	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(@RequestBody PlayerRegistrationRequestDto dtoRequest
 			,UriComponentsBuilder uriBuilder){
 		
 		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest);	

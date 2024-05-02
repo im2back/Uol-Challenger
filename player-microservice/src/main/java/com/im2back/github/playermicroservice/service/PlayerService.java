@@ -24,6 +24,7 @@ public class PlayerService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	
 	@Transactional(readOnly = true)
 	public PlayerRegistrationResponseDto findById(Long id) {
 		Player player = repository.findById(id).get();
