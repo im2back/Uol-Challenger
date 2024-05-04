@@ -1,5 +1,7 @@
 package com.im2back.github.registrationmicroservice.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +22,10 @@ public class RegistrationController {
 	private RegistrationService service;
 
 	@PostMapping
-	public ResponseEntity<PlayerRegistrationResponseDto> regsiterPlayer(@RequestParam String lista,
-			@RequestBody PlayerRegistrationRequestDto dtoRequest) {
+	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(@RequestParam String lista,
+			@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest) {
 
 		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest,lista);
-		return ResponseEntity.created(null).body(response);
+		return ResponseEntity.created(service.getLocation()).body(response);
 	}
 }
