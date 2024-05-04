@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,9 @@ import com.im2back.github.playermicroservice.model.player.dto.PlayerRegistration
 import com.im2back.github.playermicroservice.model.player.dto.PlayerUpdateRequestDto;
 import com.im2back.github.playermicroservice.model.player.dto.PlayerUpdateResponseDto;
 import com.im2back.github.playermicroservice.repository.PlayerRepository;
+import com.im2back.github.playermicroservice.service.exceptions.CustomDataIntegrityViolationException;
+import com.im2back.github.playermicroservice.service.exceptions.CustomDeletePlayerNotFoundException;
+import com.im2back.github.playermicroservice.service.exceptions.PlayerNotFound;
 
 @Service
 public class PlayerService {
@@ -23,38 +28,46 @@ public class PlayerService {
 
 	@Autowired
 	private ModelMapper modelMapper;
-	
-	
+
 	@Transactional(readOnly = true)
 	public PlayerRegistrationResponseDto findById(Long id) {
-		Player player = repository.findById(id).get();
+		Player player = repository.findById(id)
+				.orElseThrow(() -> new PlayerNotFound(id));
 		return modelMapper.map(player, PlayerRegistrationResponseDto.class);
-	}	
-	
+	}
+
 	@Transactional(readOnly = true)
 	public List<PlayerRegistrationResponseDto> findAll() {
 		return repository.findAll().stream()
 				.map(element -> modelMapper.map(element, PlayerRegistrationResponseDto.class))
-				.collect(Collectors.toList());		
-	}	
-	
+				.collect(Collectors.toList());
+	}
+
 	@Transactional
 	public PlayerRegistrationResponseDto savePlayer(PlayerRegistrationRequestDto dtoParam) {
 		Player player = modelMapper.map(dtoParam, Player.class);
 		repository.save(player);
 		return modelMapper.map(player, PlayerRegistrationResponseDto.class);
 	}
-	
+
 	@Transactional
-	public PlayerUpdateResponseDto updatePlayer(PlayerUpdateRequestDto dtoParam){
-	    Player loadedPlayer = repository.findById(dtoParam.getId()).get();
-	    loadedPlayer.update(dtoParam,loadedPlayer);
+	public PlayerUpdateResponseDto updatePlayer(PlayerUpdateRequestDto dtoParam) {
+		Player loadedPlayer = repository.findById(dtoParam.getId())
+				.orElseThrow(() -> new PlayerNotFound(dtoParam.getId()));
+		
+		loadedPlayer.update(dtoParam, loadedPlayer);
 		repository.save(loadedPlayer);
 		return modelMapper.map(loadedPlayer, PlayerUpdateResponseDto.class);
 	}
 
-	@Transactional	
+	@Transactional
 	public void deletePlayer(Long id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new CustomDeletePlayerNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new CustomDataIntegrityViolationException(id);
+		}
 	}
 }

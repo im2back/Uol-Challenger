@@ -2,6 +2,8 @@ package com.im2back.github.playermicroservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +44,7 @@ public class PlayerController {
 	}
 	
 	@PostMapping(value="/register")
-	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(@RequestBody PlayerRegistrationRequestDto dtoRequest
+	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest
 			,UriComponentsBuilder uriBuilder){
 		
 		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest);	
@@ -51,7 +53,7 @@ public class PlayerController {
 	}	
 	
 	@PutMapping(value = "update") 
-	public ResponseEntity<PlayerUpdateResponseDto> updatePlayer(@RequestBody PlayerUpdateRequestDto dtoRequest){
+	public ResponseEntity<PlayerUpdateResponseDto> updatePlayer(@Valid @RequestBody PlayerUpdateRequestDto dtoRequest){
 		PlayerUpdateResponseDto response = service.updatePlayer(dtoRequest);
 		return ResponseEntity.ok(response);	
 	}
