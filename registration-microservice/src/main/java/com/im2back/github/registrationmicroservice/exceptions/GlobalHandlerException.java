@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.im2back.github.registrationmicroservice.service.exceptions.ClientConnectionFailedException;
-import com.im2back.github.registrationmicroservice.service.exceptions.CustomFeignExceptionBadRequest;
+import com.im2back.github.registrationmicroservice.service.registration.exceptions.ClientConnectionFailedException;
+import com.im2back.github.registrationmicroservice.service.registration.exceptions.CustomFeignExceptionBadRequest;
+import com.im2back.github.registrationmicroservice.service.registration.exceptions.ValidationsCustomExceptions;
 
 @ControllerAdvice
 public class GlobalHandlerException {
@@ -60,5 +61,18 @@ public class GlobalHandlerException {
 		response.setMessage(ex.getMessage());
 
 		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(response);
+	}
+
+	@ExceptionHandler(ValidationsCustomExceptions.class)
+	ResponseEntity<StandardError> validationsCustomException(ValidationsCustomExceptions ex,
+			HttpServletRequest request) {
+		StandardError standardError = new StandardError();
+
+		standardError.setError("Bad request");
+		standardError.setMessage(ex.getMessage());
+		standardError.setPath(request.getRequestURI());
+		standardError.setStatus(HttpStatus.BAD_REQUEST.value());
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(standardError);
 	}
 }

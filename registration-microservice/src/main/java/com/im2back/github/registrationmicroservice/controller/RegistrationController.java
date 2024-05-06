@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationRequestDto;
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationResponseDto;
-import com.im2back.github.registrationmicroservice.service.RegistrationService;
+import com.im2back.github.registrationmicroservice.service.registration.RegistrationService;
 
 @RestController
 @RequestMapping("register")

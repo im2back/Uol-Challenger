@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service;
+package com.im2back.github.registrationmicroservice.service.registration;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -12,13 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.im2back.github.registrationmicroservice.clients.ClientResourcePlayer;
-import com.im2back.github.registrationmicroservice.clients.ClientResourceVingadoresAliasList;
-import com.im2back.github.registrationmicroservice.clients.ClienteResourceJusticeLeagueAliasList;
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationRequestDto;
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationResponseDto;
 import com.im2back.github.registrationmicroservice.model.validations.NickNameValidations;
-import com.im2back.github.registrationmicroservice.service.exceptions.ClientConnectionFailedException;
-import com.im2back.github.registrationmicroservice.service.exceptions.CustomFeignExceptionBadRequest;
+import com.im2back.github.registrationmicroservice.service.codinome.factory.CodinomeFactory;
+import com.im2back.github.registrationmicroservice.service.codinome.interfaces.CodinomeList;
+import com.im2back.github.registrationmicroservice.service.lists.AvengersService;
+import com.im2back.github.registrationmicroservice.service.lists.JusticeService;
+import com.im2back.github.registrationmicroservice.service.registration.exceptions.ClientConnectionFailedException;
+import com.im2back.github.registrationmicroservice.service.registration.exceptions.CustomFeignExceptionBadRequest;
 
 import feign.FeignException;
 import lombok.Getter;
@@ -30,16 +32,13 @@ public class RegistrationService {
 	private List<NickNameValidations> nickNameValidations;
 
 	@Autowired
-	private ClientResourceVingadoresAliasList clientVingadoresAliasList;
-
-	@Autowired
-	private ClienteResourceJusticeLeagueAliasList clienteJusticeLeagueAliasList;
-	
-	@Autowired
 	private ClientResourcePlayer clientResourcePlayer;
 	
 	@Autowired
 	private AvengersService avengersService;
+	
+	@Autowired
+	private  CodinomeFactory codinomeFactory;
 	
 	@Autowired
 	private JusticeService justiceService;
@@ -76,7 +75,7 @@ public class RegistrationService {
 	}
 
 	private List<String> freeNicks(String groupName, String chosenList) {
-		List<String> freeNicks = allNicks(chosenList);		
+		List<String> freeNicks = loadListOfAliases(chosenList);		
 		List<String> nicksInUse = new ArrayList<>();
 		
 		if(groupName.equals("VINGADORES")) {
@@ -89,22 +88,10 @@ public class RegistrationService {
 		return freeNicks;
 	}
 
-	private List<String> allNicks(String chosenList) {
+	private List<String> loadListOfAliases(String chosenList) {
 		List<String> allNicks = new ArrayList<>();
-		
-		if(chosenList.equals("all")) {
-			allNicks.addAll(clientVingadoresAliasList.fetchCodinomes());
-			allNicks.addAll(clienteJusticeLeagueAliasList.fetchCodinomes());
-		}
-		
-		if(chosenList.equals("justice")) {
-			allNicks.addAll(clienteJusticeLeagueAliasList.fetchCodinomes());
-		}
-		
-		if(chosenList.equals("vingadores")) {
-			allNicks.addAll(clientVingadoresAliasList.fetchCodinomes());
-		}
-		
+		CodinomeList codinomeList = codinomeFactory.getCodinomeList(chosenList);
+		allNicks.addAll(codinomeList.fetchCodinomes());	
 		return allNicks;
 	}
 	

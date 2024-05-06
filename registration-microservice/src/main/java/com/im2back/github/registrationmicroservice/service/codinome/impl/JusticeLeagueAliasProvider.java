@@ -1,21 +1,23 @@
-package com.im2back.github.registrationmicroservice.clients;
+package com.im2back.github.registrationmicroservice.service.codinome.impl;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.im2back.github.registrationmicroservice.service.codinome.interfaces.CodinomeList;
 
 @Service
-public class ClienteResourceJusticeLeagueAliasList {
+public class JusticeLeagueAliasProvider implements CodinomeList{
 
 	@Value("${URLXML}")
 	private String url;
@@ -23,7 +25,7 @@ public class ClienteResourceJusticeLeagueAliasList {
 	
 	private final RestTemplate restTemplate;
 	
-	public ClienteResourceJusticeLeagueAliasList(RestTemplate restTemplate) {
+	public JusticeLeagueAliasProvider(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 	
@@ -41,7 +43,7 @@ public class ClienteResourceJusticeLeagueAliasList {
 		        Document doc = builder.parse(is);
 		        doc.getDocumentElement().normalize();
 
-		        // Obtendo todos os elementos <codinome>
+		   
 		        NodeList nodeList = doc.getElementsByTagName("codinome");
 		        for (int i = 0; i < nodeList.getLength(); i++) {
 		            codinomes.add(nodeList.item(i).getTextContent());

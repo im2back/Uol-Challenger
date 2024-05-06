@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service.exceptions;
+package com.im2back.github.registrationmicroservice.service.registration.exceptions;
 
 public class ClientConnectionFailedException extends RuntimeException{
 
