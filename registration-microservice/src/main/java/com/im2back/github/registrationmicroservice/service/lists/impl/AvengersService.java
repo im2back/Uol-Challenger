@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service;
+package com.im2back.github.registrationmicroservice.service.lists.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,11 +6,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.im2back.github.registrationmicroservice.model.vingadores.Avengers;
+import com.im2back.github.registrationmicroservice.model.entities.vingadores.Avengers;
 import com.im2back.github.registrationmicroservice.repository.AvengersRepository;
+import com.im2back.github.registrationmicroservice.service.lists.interfaces.ListsService;
 
 @Service
-public class AvengersService {
+public class AvengersService implements ListsService{
 
 	@Autowired
 	private AvengersRepository repository;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationRequestDto;
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationResponseDto;
-import com.im2back.github.registrationmicroservice.service.RegistrationService;
+import com.im2back.github.registrationmicroservice.service.registration.RegistrationService;
 
 @RestController
 @RequestMapping("register")
@@ -26,6 +26,6 @@ public class RegistrationController {
 			@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest) {
 
 		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest,lista);
-		return ResponseEntity.created(service.getLocation()).body(response);
+		return ResponseEntity.created(null).body(response);
 	}
 }
