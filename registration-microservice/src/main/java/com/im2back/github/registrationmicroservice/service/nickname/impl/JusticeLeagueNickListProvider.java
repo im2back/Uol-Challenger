@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service.codinome.impl;
+package com.im2back.github.registrationmicroservice.service.nickname.impl;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.im2back.github.registrationmicroservice.service.codinome.interfaces.CodinomeList;
+import com.im2back.github.registrationmicroservice.service.nickname.interfaces.CodinomeList;
 
 @Service
-public class JusticeLeagueAliasProvider implements CodinomeList{
+public class JusticeLeagueNickListProvider implements CodinomeList{
 
 	@Value("${URLXML}")
 	private String url;
@@ -25,7 +25,7 @@ public class JusticeLeagueAliasProvider implements CodinomeList{
 	
 	private final RestTemplate restTemplate;
 	
-	public JusticeLeagueAliasProvider(RestTemplate restTemplate) {
+	public JusticeLeagueNickListProvider(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 	

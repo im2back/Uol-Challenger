@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.model.ligadajustica;
+package com.im2back.github.registrationmicroservice.model.entities.vingadores;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,22 +13,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_justice")
+@Table(name="tb_avengers")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class JusticeLeague {
-
+public class Avengers {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
 	
 	private String alias;
 
-	public JusticeLeague(String alias) {
+	public Avengers(String alias) {
 		super();
 		this.alias = alias;
 	}
+	
+	
+	
 }

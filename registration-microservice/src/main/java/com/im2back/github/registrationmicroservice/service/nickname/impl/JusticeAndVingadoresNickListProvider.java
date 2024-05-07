@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service.codinome.impl;
+package com.im2back.github.registrationmicroservice.service.nickname.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.im2back.github.registrationmicroservice.service.codinome.interfaces.CodinomeList;
+import com.im2back.github.registrationmicroservice.service.nickname.interfaces.CodinomeList;
 
 @Service
-public class JusticeAndVingadoresAliasProvider implements CodinomeList {
+public class JusticeAndVingadoresNickListProvider implements CodinomeList {
 	
 	@Autowired
-	private JusticeLeagueAliasProvider justiceProvider;
+	private JusticeLeagueNickListProvider justiceProvider;
 	
 	@Autowired
-	private VingadoresAliasProvider vingadoresProvider;
+	private VingadoresNickListProvider vingadoresProvider;
 
 	@Override
 	public List<String> fetchCodinomes() {

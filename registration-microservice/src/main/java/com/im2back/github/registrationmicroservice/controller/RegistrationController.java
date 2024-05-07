@@ -26,6 +26,6 @@ public class RegistrationController {
 			@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest) {
 
 		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest,lista);
-		return ResponseEntity.created(service.getLocation()).body(response);
+		return ResponseEntity.created(null).body(response);
 	}
 }

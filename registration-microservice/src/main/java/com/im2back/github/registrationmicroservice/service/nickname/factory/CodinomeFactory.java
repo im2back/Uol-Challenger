@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service.codinome.factory;
+package com.im2back.github.registrationmicroservice.service.nickname.factory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,22 +8,22 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.im2back.github.registrationmicroservice.service.codinome.impl.JusticeAndVingadoresAliasProvider;
-import com.im2back.github.registrationmicroservice.service.codinome.impl.JusticeLeagueAliasProvider;
-import com.im2back.github.registrationmicroservice.service.codinome.impl.VingadoresAliasProvider;
-import com.im2back.github.registrationmicroservice.service.codinome.interfaces.CodinomeList;
+import com.im2back.github.registrationmicroservice.service.nickname.impl.JusticeAndVingadoresNickListProvider;
+import com.im2back.github.registrationmicroservice.service.nickname.impl.JusticeLeagueNickListProvider;
+import com.im2back.github.registrationmicroservice.service.nickname.impl.VingadoresNickListProvider;
+import com.im2back.github.registrationmicroservice.service.nickname.interfaces.CodinomeList;
 
 @Component
 public class CodinomeFactory {
 
 	@Autowired
-	private VingadoresAliasProvider vingadoresAliasProvider;
+	private VingadoresNickListProvider vingadoresAliasProvider;
 
 	@Autowired
-	private JusticeLeagueAliasProvider justiceLeagueAliasProvider;
+	private JusticeLeagueNickListProvider justiceLeagueAliasProvider;
 
 	@Autowired
-	private JusticeAndVingadoresAliasProvider justiceAndVingadoresAliasProvider;
+	private JusticeAndVingadoresNickListProvider justiceAndVingadoresAliasProvider;
 
 	private final Map<String, CodinomeList> providerMap = new HashMap<>();
 

@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service.codinome.impl;
+package com.im2back.github.registrationmicroservice.service.nickname.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,17 +10,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.im2back.github.registrationmicroservice.service.codinome.interfaces.CodinomeList;
+import com.im2back.github.registrationmicroservice.service.nickname.interfaces.CodinomeList;
 
 @Service
-public class VingadoresAliasProvider implements CodinomeList{
+public class VingadoresNickListProvider implements CodinomeList{
 
 	@Value("${URLJSON}")
 	private String url;
 
 	private final RestTemplate restTemplate;
 
-	public VingadoresAliasProvider(RestTemplate restTemplate) {
+	public VingadoresNickListProvider(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 

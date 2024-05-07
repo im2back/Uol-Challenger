@@ -1,4 +1,4 @@
-package com.im2back.github.registrationmicroservice.service.codinome.interfaces;
+package com.im2back.github.registrationmicroservice.service.nickname.interfaces;
 
 import java.util.List;
 
