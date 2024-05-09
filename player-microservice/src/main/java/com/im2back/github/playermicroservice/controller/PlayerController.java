@@ -62,7 +62,7 @@ public class PlayerController {
 	@DeleteMapping(value = "delete")
 	public ResponseEntity deletePlayer(@RequestParam("id") Long playerId){
 		service.deletePlayer(playerId);
-		return ResponseEntity.ok(null);	
+		return ResponseEntity.ok().build();	
 	}
 	
 

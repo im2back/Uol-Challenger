@@ -63,12 +63,6 @@ public class Player {
 	        if (dtoParam.getPhone() != null) {
 	            player.setPhone(dtoParam.getPhone());
 	        }
-	        if (dtoParam.getAlias() != null) {
-	            player.setAlias(dtoParam.getAlias());
-	        }
-	        if (dtoParam.getGroup() != null) {
-	            player.setGroup(dtoParam.getGroup());
-	        }	
 	}
 	
 	
