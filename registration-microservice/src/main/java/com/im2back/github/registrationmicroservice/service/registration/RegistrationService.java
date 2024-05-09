@@ -36,7 +36,6 @@ public class RegistrationService {
 		try {
 			String alias = util.sortNickname(dtoRequest.getGroup(), chosenList);
 			dtoRequest.setAlias(alias);
-			util.saveToTheListOfNicknamesInUse(dtoRequest.getGroup(), alias);
 			ResponseEntity<PlayerRegistrationResponseDto> clientRequestResponse = clientResourcePlayer
 					.registerPlayer(dtoRequest);
 			return clientRequestResponse.getBody();
