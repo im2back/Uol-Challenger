@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.im2back.github.playermicroservice.model.group.Group;
 import com.im2back.github.playermicroservice.model.player.dto.PlayerRegistrationRequestDto;
 import com.im2back.github.playermicroservice.model.player.dto.PlayerRegistrationResponseDto;
 import com.im2back.github.playermicroservice.model.player.dto.PlayerUpdateRequestDto;
@@ -64,6 +65,13 @@ public class PlayerController {
 		service.deletePlayer(playerId);
 		return ResponseEntity.ok().build();	
 	}
+	
+	@GetMapping("/list-codenames/{group}")
+    ResponseEntity<List<String>> list(@PathVariable("group") String group){
+		var response = service.listCodinomesByGroup(Group.convertStringInGroup(group));
+			return ResponseEntity.ok(response);
+	}
+
 	
 
 }
