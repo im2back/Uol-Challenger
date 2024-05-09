@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.im2back.github.playermicroservice.model.group.Group;
 import com.im2back.github.playermicroservice.model.player.Player;
 import com.im2back.github.playermicroservice.model.player.dto.PlayerRegistrationRequestDto;
 import com.im2back.github.playermicroservice.model.player.dto.PlayerRegistrationResponseDto;
@@ -69,5 +70,10 @@ public class PlayerService {
 		} catch (DataIntegrityViolationException e) {
 			throw new CustomDataIntegrityViolationException(id);
 		}
+	}
+
+	@Transactional(readOnly = true)
+	public List<String> listCodinomesByGroup(Group group) {	
+		return repository.listCodinomesByGroup(group);
 	}
 }
