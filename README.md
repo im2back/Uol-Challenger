@@ -1,3 +1,6 @@
+# Status : 
+Parcialmente concluído, será anexado os testes de unidade em breve. att 10/05/2024
+
 # Meu objetivo ao desenvolver esse desafio :
 Meu objetivo principal é colocar em prática meus conhecimentos sobre arquitetura e melhores práticas. Estou focado em aprimorar minhas habilidades na organização do versionamento de código no GitHub, trabalhando com branches e pull requests de maneira eficaz. Isso inclui:
 
