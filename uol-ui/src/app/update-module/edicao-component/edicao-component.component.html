@@ -1,0 +1,67 @@
+
+<form #playerForm="ngForm" (ngSubmit)="atualizarPlayer(playerForm)" style=" padding: 10px;">
+  <div class="grid atributes" >
+
+    <div class="col-12" >
+        <h1>Atualizar</h1>
+    </div>
+
+    <div class="col-12"    >
+      <label >Id</label>
+      <input type="text" readonly [(ngModel)]="IdRetornado" pInputText name="id" ngModel #id="ngModel"/>
+      <small id="username-help" style="color: blue;">
+        O ID não pode ser alterado.
+      </small>
+    </div>
+
+    <div class="col-12"    >
+      <label >Nome</label>
+      <input type="text" [(ngModel)]="nameRetornado" pInputText name="name" ngModel #name="ngModel"/>
+    </div>
+
+    <div class="col-12"  >
+      <label >E-mail</label>
+      <input type="text" pInputText [(ngModel)]="emailRetornado" name="email" ngModel #email="ngModel"/>
+    </div>
+
+    <div class="col-12"  >
+      <label >Telefone</label>
+      <input type="text" pInputText [(ngModel)]="phoneRetornado" name="phone" ngModel #phone="ngModel"/>
+    </div>
+
+    <div class="col-12"  >
+      <label >Codinome</label>
+      <input type="text" readonly pInputText [(ngModel)]="aliasRetornado" name="alias" ngModel #alias="ngModel"/>
+      <small id="username-help" style="color: blue;">
+        O Codinome não pode ser alterado.
+      </small>
+    </div>
+
+
+    <div class="col-12" style="display: flex; justify-content: left;">
+
+      <div class="flex flex-column gap-3">
+        <div *ngFor="let group of groups" class="field-checkbox">
+          <p-radioButton
+            [disabled]="true"
+              [inputId]="group.value"
+              name="group"
+              [value]="group.value"
+              [(ngModel)]="selectedGroup" />
+          <label [for]="group.value" class="ml-2">
+              {{ group.name }}
+              <small id="username-help" style="color: blue; font-size: 10px;">
+                O grupo não pode ser alterado.
+            </small>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12" style="display: flex; justify-content: center;" >
+      <button pButton  type="submit" label="Atualizar"></button>
+    </div>
+
+  </div>
+</form>

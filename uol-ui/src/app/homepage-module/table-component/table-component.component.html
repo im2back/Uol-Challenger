@@ -1,0 +1,27 @@
+<table class="custom-prime-table">
+  <thead >
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Codinome</th>
+      <th>Grupo</th>
+      <th>E-mail</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let element of playersList" >
+      <td>{{ element.id }}</td>
+      <td>{{ element.name }}</td>
+      <td>{{ element.phone }}</td>
+      <td>{{ element.alias }}</td>
+      <td>{{ element.group }}</td>
+      <td>{{ element.email }}</td>
+      <td><a class="editar" [routerLink]="['/atualizar', element.id]" >Editar</a></td>
+      <td><button type="button" class="Excluir" (click)="element.id !== undefined ? excluirPlayer(element.id) : null"
+        > Excluir</button></td>
+    </tr>
+  </tbody>
+</table>

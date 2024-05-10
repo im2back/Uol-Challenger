@@ -1,0 +1,35 @@
+.custom-prime-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.custom-prime-table th,
+.custom-prime-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-prime-table th {
+  background-color: #007ad9;
+  color: white;
+}
+
+.custom-prime-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.editar{
+  text-decoration: none;
+  color: yellowgreen;
+}
+
+
+button{
+  background-color: transparent ;
+  color: red;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}

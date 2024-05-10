@@ -1,0 +1,66 @@
+<form #playerForm="ngForm" (ngSubmit)="cadastrarPlayer(playerForm)" style=" padding: 10px;">
+  <div class="grid atributes" >
+
+    <div class="col-12" >
+        <h1>Cadastre-se</h1>
+    </div>
+
+    <div class="col-12"    >
+      <label >Nome</label>
+      <input type="text" pInputText name="name" ngModel #name="ngModel"/>
+    </div>
+
+    <div class="col-12"  >
+      <label >E-mail</label>
+      <input type="text" pInputText name="email" ngModel #email="ngModel"/>
+    </div>
+
+    <div class="col-12"  >
+      <label >Telefone</label>
+      <input type="text" pInputText  name="phone" ngModel #phone="ngModel"/>
+    </div>
+
+    <div class="col-6" style="display: flex; justify-content: center; flex-direction: column;">
+
+      <h3>Selecione o grupo</h3>
+      <div class="flex flex-column gap-3">
+        <div *ngFor="let group of groups" class="field-checkbox">
+          <p-radioButton
+              [inputId]="group.value"
+              name="group"
+              [value]="group.value"
+              [(ngModel)]="selectedGroup" />
+          <label [for]="group.value" class="ml-2">
+              {{ group.name }}
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-6" style="display: flex; justify-content: center; flex-direction: column;">
+      <h3>Lista de codinomes</h3>
+      <div class="flex flex-column gap-3">
+        <div *ngFor="let lista of listas" class="field-checkbox">
+          <p-radioButton
+              [inputId]="lista.value"
+              name="lista"
+              [value]="lista.value"
+              [(ngModel)]="listaSelecionada" />
+          <label [for]="lista.value" class="ml-2">
+              {{ lista.name }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6" style="display: flex; justify-content: right;" >
+      <button pButton  type="submit" label="Cadastrar"></button>
+    </div>
+
+    <div class="col-6" style="display: flex; justify-content: left;" >
+      <button pButton  (click)="listarTodos()" type="button" label="Listar jogadores"></button>
+    </div>
+
+  </div>
+</form>

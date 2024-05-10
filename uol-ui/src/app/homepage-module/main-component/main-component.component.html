@@ -1,0 +1,31 @@
+
+
+
+<div class="container">
+  <div class="grid" >
+
+    <div class="col-12" style="margin-bottom: 100px;" *ngIf="message">
+      <app-message [message]="message" ></app-message>
+    </div>
+
+  <div class="col-12" >
+    <app-form-component
+      (messageEvent)="onMessageReceived($event)"
+      (playersListUpdated)="onPlayersListUpdated($event)">
+    </app-form-component>
+  </div>
+
+
+    <div class="col-12" >
+      <h1>Jogadores Cadastrados</h1>
+    </div>
+
+    <div class="col-12">
+      <app-table-component [playersList]="playersList"
+      (playersDelete)="atualizarPage($event)"
+      ></app-table-component>
+    </div>
+
+  </div>
+</div>
+
