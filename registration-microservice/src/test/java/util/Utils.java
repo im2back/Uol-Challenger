@@ -15,7 +15,7 @@ import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationR
 	    public static final List<String> listCodinomesLiga = createCodinomesLigaList();
 
 	    public static final PlayerRegistrationRequestDto playerRegistrationRequestDto = new PlayerRegistrationRequestDto(
-	            "Tony Stark", "tony@stark.com", "11234567890", "Hulk", "VINGADORES");
+	            "Tony Stark", "tony@stark.com", "11234567890", null, "VINGADORES");
 	    public static final PlayerRegistrationResponseDto playerRegistrationResponseDto = new PlayerRegistrationResponseDto(1L,
 	            "Tony Stark", "tony@stark.com", "11234567890", "Hulk", "VINGADORES");
 

@@ -17,6 +17,7 @@ import com.im2back.github.registrationmicroservice.service.utils.NicknameUtil;
 
 import feign.FeignException;
 
+
 @Service
 public class RegistrationService {
 
