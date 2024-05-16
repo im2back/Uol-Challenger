@@ -1,6 +1,5 @@
-# Status de Desenvolvimento 🟢 
+# Status de Desenvolvimento 16/05/2024 🟢  
 Parcialmente concluído, a aplicação ja é funcional porém ainda serão anexados:
-- Testes de unidade
 - Documentação
 ### Confira a proposta do desafio original acessando o seguinte link: 👉🏻 <a href="https://github.com/uolhost/test-backEnd-Java">Desafio Backend Java - UOL Host</a>.
 <br><br>
