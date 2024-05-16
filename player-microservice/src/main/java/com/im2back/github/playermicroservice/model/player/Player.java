@@ -19,26 +19,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="tb_player")
+@Table(name = "tb_player")
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 public class Player {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
-	
+
 	private String email;
-	
+
 	private String phone;
-	
+
 	private String alias;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "group_list")
 	private Group group;
@@ -52,19 +52,17 @@ public class Player {
 		this.group = group;
 	}
 
-	public void update(PlayerUpdateRequestDto dtoParam, Player player) {
+	public void update(PlayerUpdateRequestDto dtoParam) {
 
-	        if (dtoParam.getName() != null) {
-	            player.setName(dtoParam.getName());
-	        }
-	        if (dtoParam.getEmail() != null) {
-	            player.setEmail(dtoParam.getEmail());
-	        }
-	        if (dtoParam.getPhone() != null) {
-	            player.setPhone(dtoParam.getPhone());
-	        }
+		if (dtoParam.getName() != null) {
+			this.setName(dtoParam.getName());
+		}
+		if (dtoParam.getEmail() != null) {
+			this.setEmail(dtoParam.getEmail());
+		}
+		if (dtoParam.getPhone() != null) {
+			this.setPhone(dtoParam.getPhone());
+		}
 	}
-	
-	
 
 }

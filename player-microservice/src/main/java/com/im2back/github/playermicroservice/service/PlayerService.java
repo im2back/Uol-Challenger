@@ -56,7 +56,7 @@ public class PlayerService {
 		Player loadedPlayer = repository.findById(dtoParam.getId())
 				.orElseThrow(() -> new PlayerNotFound(dtoParam.getId()));
 		
-		loadedPlayer.update(dtoParam, loadedPlayer);
+		loadedPlayer.update(dtoParam);
 		repository.save(loadedPlayer);
 		return modelMapper.map(loadedPlayer, PlayerUpdateResponseDto.class);
 	}

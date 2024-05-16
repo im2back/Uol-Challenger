@@ -12,22 +12,19 @@ import com.im2back.github.registrationmicroservice.service.utils.NicknameUtil;
 @Component
 public class ValidNickNameCannotBeDuplicated implements NickNameValidations {
 
-
-	
 	@Autowired
 	private NicknameUtil util;
 
 	@Override
 	public void valid(PlayerRegistrationRequestDto dto, String listaEscolhidaParam) {
-		
+
 		List<String> freeNicks = util.freeNicks(dto.getGroup(), listaEscolhidaParam);
-		
-		if(freeNicks.isEmpty()) {
-			throw new ValidationsCustomExceptions("Não há codinomes disponiveis na lista " +listaEscolhidaParam +
-					" para serem cadastrados no grupo "+ dto.getGroup());
+
+		if (freeNicks.isEmpty()) {
+			throw new ValidationsCustomExceptions("Não há codinomes disponiveis na lista " + listaEscolhidaParam
+					+ " para serem cadastrados no grupo " + dto.getGroup());
 		}
 
 	}
-
 
 }
