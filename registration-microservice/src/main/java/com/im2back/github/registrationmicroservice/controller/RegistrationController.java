@@ -14,13 +14,22 @@ import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationR
 import com.im2back.github.registrationmicroservice.model.dto.PlayerRegistrationResponseDto;
 import com.im2back.github.registrationmicroservice.service.registration.RegistrationService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("register")
 public class RegistrationController {
 
 	@Autowired
 	private RegistrationService service;
-
+	
+	@Operation(summary = "Cadastra um player e retorna um DTO do player cadastrado")
+	@ApiResponses({
+		@ApiResponse(responseCode = "201", description = "Retorna um DTO de Player em caso de sucesso"),
+		@ApiResponse(responseCode = "400", description = "Lança uma exceção do Bean validation em caso de dados cadastrais"
+				+ "inválidos ou também pode lançar uma exceção de validação personalizada")})
 	@PostMapping
 	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(@RequestParam String lista,
 			@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest) {

@@ -26,7 +26,8 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 public class Player {
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

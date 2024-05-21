@@ -24,54 +24,81 @@ import com.im2back.github.playermicroservice.model.player.dto.PlayerUpdateReques
 import com.im2back.github.playermicroservice.model.player.dto.PlayerUpdateResponseDto;
 import com.im2back.github.playermicroservice.service.PlayerService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping("player")
 public class PlayerController {
-	
+
 	@Autowired
 	private PlayerService service;
-	
-	
-	@GetMapping(value="/list-all")
-	public ResponseEntity<List<PlayerRegistrationResponseDto>> listAllplayers(){
+
+	@Operation(summary = "Retorna uma lista contendo DTO'S de Players cadastrados")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "Retorna a lista de Players")})
+	@GetMapping(value = "/list-all")
+	public ResponseEntity<List<PlayerRegistrationResponseDto>> listAllplayers() {
 		var response = service.findAll();
-			return ResponseEntity.ok(response);
+		return ResponseEntity.ok(response);
 	}
-	
+
+	@Operation(summary = "Retorna um DTO de Player, apartir de um ID")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "Retorna um DTO de Player"),
+			@ApiResponse(responseCode = "400", description = "Foi gerada uma exceção do tipo  PlayerNotFound")})
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<PlayerRegistrationResponseDto> detailPlayer(@PathVariable Long id){
+	public ResponseEntity<PlayerRegistrationResponseDto> detailPlayer(@PathVariable Long id) {
 		var response = service.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
-	@PostMapping(value="/register")
-	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest
-			,UriComponentsBuilder uriBuilder){
-		
-		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest);	
-		var uri = uriBuilder.path("/player/{id}").buildAndExpand(response.getId()).toUri();			
-			return ResponseEntity.created(uri).body(response);
-	}	
-	
-	@PutMapping(value = "update") 
-	public ResponseEntity<PlayerUpdateResponseDto> updatePlayer(@Valid @RequestBody PlayerUpdateRequestDto dtoRequest){
-		PlayerUpdateResponseDto response = service.updatePlayer(dtoRequest);
-		return ResponseEntity.ok(response);	
-	}
-	
-	@SuppressWarnings("rawtypes")
-	@DeleteMapping(value = "delete")
-	public ResponseEntity deletePlayer(@RequestParam("id") Long playerId){
-		service.deletePlayer(playerId);
-		return ResponseEntity.ok().build();	
-	}
-	
-	@GetMapping("/list-codenames/{group}")
-    ResponseEntity<List<String>> list(@PathVariable("group") String group){
-		var response = service.listCodinomesByGroup(Group.convertStringInGroup(group));
-			return ResponseEntity.ok(response);
+
+	@Operation(summary = "Registra um Player e retorna um DTO de Player")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "201", description = "Retorna um DTO do Player cadastrado"),
+			@ApiResponse(responseCode = "400", description = "Foi gerada uma exceção pelo Bean validation /"
+					+ " Validações personalizadas relacionadas as regras de cadastro")})
+	@PostMapping(value = "/register")
+	public ResponseEntity<PlayerRegistrationResponseDto> registerPlayer(
+			@Valid @RequestBody PlayerRegistrationRequestDto dtoRequest, UriComponentsBuilder uriBuilder) {
+
+		PlayerRegistrationResponseDto response = service.savePlayer(dtoRequest);
+		var uri = uriBuilder.path("/player/{id}").buildAndExpand(response.getId()).toUri();
+		return ResponseEntity.created(uri).body(response);
 	}
 
+	@Operation(summary = "Atualiza dados de um Player e Retorna um DTO do Player atualizado")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "Retorna um DTO do Player atualizado"),
+			@ApiResponse(responseCode = "400", description = "Foi gerada uma exceção pelo Bean validation /"
+					+ " Validações personalizadas relacionadas as regras de cadastro")})
+	@PutMapping(value = "update")
+	public ResponseEntity<PlayerUpdateResponseDto> updatePlayer(@Valid @RequestBody PlayerUpdateRequestDto dtoRequest) {
+		PlayerUpdateResponseDto response = service.updatePlayer(dtoRequest);
+		return ResponseEntity.ok(response);
+	}
+		
+	@Operation(summary = "Delete um Player da base de dados com base em um ID")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "Deleta o player e não retorna nada"),
+			@ApiResponse(responseCode = "400", description = "Retorna uma exceção ao tentar excluir um player"
+					+ "que não existe"),
+			@ApiResponse(responseCode = "409", description = "Retorna uma exceção ao tentar excluir um player "
+					+ "referenciados por outras tabelas")})
+	@DeleteMapping(value = "delete")
+	public ResponseEntity<Void> deletePlayer(@RequestParam("id") Long playerId) {
+		service.deletePlayer(playerId);
+		return ResponseEntity.ok().build();
+	}
 	
+	@Operation(summary = "Retorna uma lista contendos os codinomes em uso por determinado GRUPO")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Retorna a lista de codinomes baseados num GRUPO")})
+	@GetMapping("/list-codenames/{group}")
+	ResponseEntity<List<String>> list(@PathVariable("group") String group) {
+		var response = service.listCodinomesByGroup(Group.convertStringInGroup(group));
+		return ResponseEntity.ok(response);
+	}
 
 }

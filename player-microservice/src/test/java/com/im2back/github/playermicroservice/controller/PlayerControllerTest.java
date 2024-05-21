@@ -158,8 +158,11 @@ class PlayerControllerTest {
 		BDDMockito.when(service.updatePlayer(Utils.playerUpdateRequestDto)).thenReturn(Utils.playerUpdateResponseDto);
 
 		// ACT
-		var response = mvc.perform(put("/player/update").contentType(MediaType.APPLICATION_JSON).content(jsonBody))
-				.andExpect(status().isOk()).andReturn().getResponse();
+		var response = mvc.perform(put("/player/update")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonBody))
+				.andExpect(status().isOk())
+				.andReturn().getResponse();
 
 		// ASSERT
 		verify(service, times(1)).updatePlayer(Utils.playerUpdateRequestDto);

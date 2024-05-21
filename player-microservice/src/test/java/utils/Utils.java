@@ -24,7 +24,7 @@ public class Utils {
             "Tony Stark", "tony@stark.com", "11234567890", "Hulk", Group.VINGADORES);
     public static final PlayerRegistrationResponseDto playerRegistrationResponseDto = new PlayerRegistrationResponseDto(1L,
             "Tony Stark", "tony@stark.com", "11234567890", "Hulk", Group.VINGADORES);
-    public static final PlayerUpdateRequestDto playerUpdateRequestDto = new PlayerUpdateRequestDto(1L, "Tony",
+    public static final PlayerUpdateRequestDto playerUpdateRequestDto = new PlayerUpdateRequestDto(1L, "Tony Boy",
             "tony@stark.com", "11234567890", "Hulk", Group.VINGADORES);
     public static final PlayerUpdateResponseDto playerUpdateResponseDto = new PlayerUpdateResponseDto(1L, "Tony Stark",
             "tony@stark.com", "11234567890", "Hulk", Group.VINGADORES);
