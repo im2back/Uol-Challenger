@@ -1,6 +1,5 @@
-# Status de Desenvolvimento 16/05/2024 🟢  
-Parcialmente concluído, a aplicação ja é funcional porém ainda serão anexados:
-- Documentação
+# Status de Desenvolvimento 20/05/2024 🟢  
+- Concluído, no entando a API está sujeita a revisão e futuras melhorias.
 ### Confira a proposta do desafio original acessando o seguinte link: 👉🏻 <a href="https://github.com/uolhost/test-backEnd-Java">Desafio Backend Java - UOL Host</a>.
 <br><br>
 # Objetivos ao Desenvolver Este Desafio 🏋🏻‍♀️
@@ -16,6 +15,11 @@ Meu objetivo principal é aplicar meus conhecimentos em arquitetura e incorporar
 
 ## Captura de Tela do Meu Layout de Edição
 ![EdicaoPrint](https://github.com/im2back/Uol-Challenger/assets/117541466/c4bd720a-2a11-48f0-bc78-833119fc6fa8)
+
+<br>
+
+# Documentação
+![documentação](https://github.com/im2back/Uol-Challenger/assets/117541466/dbbc1e5c-2993-4d4e-a168-c69cf08349c7)
 
 
 # Tecnologias utilizadas
