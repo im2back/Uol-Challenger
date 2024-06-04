@@ -1,5 +1,5 @@
-# Status de Desenvolvimento 04/06/2024 🟢  
-- EM REFATORAMENTO DA ARQUITETURA ! A aplicação ja havia sido concluída no entando foi observado pontos de melhoria e agora vou refatora-la.
+# Status de Desenvolvimento 20/05/2024 🟢  
+-Concluído, sujeito a melhorias.
 ### Confira a proposta do desafio original acessando o seguinte link: 👉🏻 <a href="https://github.com/uolhost/test-backEnd-Java">Desafio Backend Java - UOL Host</a>.
 <br><br>
 # Objetivos ao Desenvolver Este Desafio 🏋🏻‍♀️
